@@ -29,8 +29,8 @@ import HelpcenterSupport from "./pages/helpcenter-support";
 import Blogs from "./pages/blogs";
 import BlogSidebar from "./pages/blog-sidebar";
 import BlogDetail from "./pages/blog-detail";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import Login from "./pages/login/login";
+import Signup from "./pages/signup/signup";
 import ResetPassword from "./pages/reset-password";
 import LockScreen from "./pages/lock-screen";
 import Terms from "./pages/terms";
@@ -39,6 +39,9 @@ import ContactUs from "./pages/contactus";
 import Error from "./pages/error";
 import Comingsoom from "./pages/comingsoon";
 import Maintenance from "./pages/maintenance";
+
+import LoginEn from "./pages/login/loginAsEn";
+import SignupEn from "./pages/signup/signupAsEn";
 
 
 function App() {
@@ -52,7 +55,7 @@ function App() {
         <Route path='/job-categories' element={<JobCategories />} />
 
         <Route path='/job-grid-two' element={<JobGridTwo />} />
-        
+
         <Route path='/job-list-one' element={<JobListOne />} />
         <Route path='/job-apply' element={<JobApply />} />
         <Route path='/job-post' element={<JobPost />} />
@@ -82,7 +85,11 @@ function App() {
         <Route path='/blog-detail/:id' element={<BlogDetail />} />
 
         <Route path='/login' element={<Login />} />
+        <Route path='/En-login' element={<LoginEn />} />
+
         <Route path='/signup' element={<Signup />} />
+        <Route path='/En-signup' element={<SignupEn />} />
+        
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/lock-screen' element={<LockScreen />} />
 

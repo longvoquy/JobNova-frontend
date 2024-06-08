@@ -2,24 +2,24 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
-import bg1 from '../assets/images/hero/bg3.jpg'
-import logo from '../assets/images/logo-dark.png'
-import useProtectRoute from "../hook/useProtectRoute"
-import api from '../api/http'
+import bg1 from '../../assets/images/hero/bg3.jpg'
+import logo from '../../assets/images/logo-dark.png'
+import useProtectRoute from "../../hook/useProtectRoute"
+import api from '../../api/http'
 
-export default function Login() {
+export default function LoginEn() {
     const navigate = useNavigate();
     useProtectRoute()
 
 
     const loginMutation = useMutation({
         mutationFn: (formData) => {
-            return api.post('login', formData);
+            return api.post('enterprise/login', formData);
         },
     });
     const reverifyMutation = useMutation({
         mutationFn: (formData) => {
-            return api.post("reverify", formData);
+            return api.post("enterprise/reverify", formData);
         },
     });
 
@@ -42,7 +42,7 @@ export default function Login() {
                         { email: body.email },
                         {
                             onSuccess: () => {
-                                navigate(`/verify?email=${body.email}`);
+                                navigate(`/enterprise/verify?email=${body.email}`);
                             },
                         }
                     );
@@ -83,10 +83,10 @@ export default function Login() {
                                     <span className="forgot-pass text-muted small mb-0"><Link to="/reset-password" className="text-muted">Forgot password ?</Link></span>
                                 </div>
 
-                                <button className="btn btn-primary w-100" type="submit">Sign in</button>
+                                <button className="btn btn-primary w-100" type="submit">Sign in as Enterprise</button>
 
                                 <div className="col-12 text-center mt-3">
-                                    <span><span className="text-muted me-2 small">Don't have an account ?</span> <Link to="/signup" className="text-dark fw-semibold small">Sign Up</Link></span>
+                                    <span><span className="text-muted me-2 small">Don't have an account ?</span> <Link to="/En-signup" className="text-dark fw-semibold small">Sign Up</Link></span>
                                 </div>
                             </form>
                         </div>

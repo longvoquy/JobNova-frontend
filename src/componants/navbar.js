@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logoDark from "../assets/images/logo-dark.png"
 import logoWhite from "../assets/images/logo-white.png"
 import logoLight from "../assets/images/logo-light.png"
-import client from "../assets/images/team/01.jpg"
 import { LuSearch, FiUser, FiSettings, FiLock, FiLogOut, FiLogIn } from "../assets/icons/vander";
 
 import useUserInfo from '../hook/useUserInfo'
@@ -23,7 +22,8 @@ export default function Navbar({ navClass, navLight }) {
 
     const { data: userData } = useUserInfo();
     const { data: enterpriseData } = useEnterpriseInfo();
-
+    const userRole = localStorage.getItem("roleUser");
+    const enterpriseRole = localStorage.getItem("roleEnterprise");
     const user = userData?.data;
     const enterprise = enterpriseData?.data;
 
@@ -76,19 +76,38 @@ export default function Navbar({ navClass, navLight }) {
             });
         }
     }
+    // Function to get avatar_url from user or enterprise
+    const getAvatarUrl = () => {
+        if (user?.avatar_url) {
+            return user.avatar_url;
+        }
+        if (enterprise?.avatar_url) {
+            return enterprise.avatar_url;
+        }
 
+    };
 
     const renderUser = () => (
         <div className="dropdown dropdown-primary" ref={cartDropdownRef}>
             <button type="button" onClick={() => setCartitem(!cartitem)} className="dropdown-toggle btn btn-sm btn-icon btn-pills btn-primary">
-                <img src={client} className="img-fluid rounded-pill" alt="" />
+                <img src={getAvatarUrl()} className="img-fluid rounded-pill" alt="" />
             </button>
             <div style={{ display: cartitem === true ? 'block' : 'none' }}>
                 <div className={`dropdown-menu dd-menu dropdown-menu-end bg-white rounded shadow border-0 mt-3 show`}>
-                    <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
-                    <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
+                    {userRole && (
+                        <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
+                    )}{enterpriseRole && (
+                        <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
+                    )}
+                    {userRole && (
+                        <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
+                    )}{enterpriseRole && (
+                        <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
+                    )}
                     <div className="dropdown-divider border-top"></div>
+
                     <Link to="/lock-screen" className="dropdown-item fw-medium fs-6"><FiLock className="fea icon-sm me-2 align-middle" />Lockscreen</Link>
+
                     <span onClick={() => {
                         localStorage.clear();
                         navigate("/");
@@ -155,9 +174,18 @@ export default function Navbar({ navClass, navLight }) {
                         {user || enterprise ? (
                             renderUser()
                         ) : (
-                            <Link to="/login" className="btn btn-sm btn-icon btn-pills btn-primary">
-                                <FiLogIn className="icons" />
-                            </Link>
+                            <div className="dropdown dropdown-primary" ref={cartDropdownRef}>
+                                <button type="button" onClick={() => setCartitem(!cartitem)} className="dropdown-toggle btn btn-sm btn-icon btn-pills btn-primary">
+                                    <FiLogIn />
+                                </button>
+                                <div style={{ display: cartitem === true ? 'block' : 'none' }}>
+                                    <div className={`dropdown-menu dd-menu dropdown-menu-end bg-white rounded shadow border-0 mt-3 show`}>
+                                            <Link to="/login" className="dropdown-item fw-medium fs-6">Login as Job Candidate</Link>
+                                            <div className="dropdown-divider border-top"></div>     
+                                            <Link to="/En-login" className="dropdown-item fw-medium fs-6">Login as Enterprise</Link>
+                                    </div>
+                                </div>
+                            </div>
                         )}
                     </li>
                 </ul>
