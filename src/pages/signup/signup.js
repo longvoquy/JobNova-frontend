@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 import bg1 from '../../assets/images/hero/bg3.jpg'
 import logo from '../../assets/images/logo-dark.png'
 import api from "../../api/http";
 import useProtectRoute from "../../hook/useProtectRoute";
+import '../../assets/css/eyes.css'
 export default function Signup() {
+    const [showPassword, setShowPassword] = useState(false);
+
     const navigate = useNavigate();
+    //hien password
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     useProtectRoute()
     const registerMutation = useMutation({
         mutationFn: (formData) => {
@@ -65,7 +74,12 @@ export default function Signup() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-semibold" htmlFor="loginpass">Password</label>
-                                    <input name='password' type="password" className="form-control" id="loginpass" placeholder="Password" />
+                                    <div className="input-group">
+                                        <input name='password' type={showPassword ? 'text' : 'password'} className="form-control" id="loginpass" placeholder="Password" />
+                                        <span className="input-group-append" onClick={togglePasswordVisibility}>
+                                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div className="form-check mb-3">

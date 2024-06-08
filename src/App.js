@@ -31,7 +31,7 @@ import BlogSidebar from "./pages/blog-sidebar";
 import BlogDetail from "./pages/blog-detail";
 import Login from "./pages/login/login";
 import Signup from "./pages/signup/signup";
-import ResetPassword from "./pages/reset-password";
+import ResetPassword from "./pages/reset-password/reset-password";
 import LockScreen from "./pages/lock-screen";
 import Terms from "./pages/terms";
 import Privacy from "./pages/privacy";
@@ -42,8 +42,11 @@ import Maintenance from "./pages/maintenance";
 
 import LoginEn from "./pages/login/loginAsEn";
 import SignupEn from "./pages/signup/signupAsEn";
-
-
+import ResetPasswordEn from "./pages/reset-password/reset-passwordAsEn";
+import UpdatePassword from "./pages/update-password/update-password";
+import UpdatePasswordEn from "./pages/update-password/update-passwordAsEn";
+import CreatePassword from "./pages/create-password/create-password"
+import CreatePasswordEn from "./pages/change-password/create-passwordAsEn";
 function App() {
   return (
     <>
@@ -91,6 +94,7 @@ function App() {
         <Route path='/En-signup' element={<SignupEn />} />
         
         <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/En-reset-password' element={<ResetPasswordEn />} />
         <Route path='/lock-screen' element={<LockScreen />} />
 
         <Route path='/terms' element={<Terms />} />
@@ -100,6 +104,10 @@ function App() {
         <Route path='/error' element={<Error />} />
         <Route path='/comingsoon' element={<Comingsoom />} />
         <Route path='/maintenance' element={<Maintenance />} />
+        <Route path='/update-password' element={<UpdatePassword />} />
+        <Route path='/En-update-password' element={<UpdatePasswordEn />} />
+        <Route path='/change-password' element={<CreatePassword />} />
+        <Route path='/En-change-password' element={<CreatePasswordEn />} />
       </Routes>
     </>
   );
