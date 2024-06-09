@@ -21,7 +21,8 @@ export default function NavbarDark() {
 
     const { data: userData } = useUserInfo();
     const { data: enterpriseData } = useEnterpriseInfo();
-
+    const userRole = localStorage.getItem("roleUser");
+    const enterpriseRole = localStorage.getItem("roleEnterprise");
     const user = userData?.data;
     const enterprise = enterpriseData?.data;
 
@@ -72,17 +73,37 @@ export default function NavbarDark() {
             });
         }
     }
+    const getAvatarUrl = () => {
+        if (user?.avatar_url) {
+            return user.avatar_url;
+        }
+        if (enterprise?.avatar_url) {
+            return enterprise.avatar_url;
+        }
+
+    };
+
     const renderUser = () => (
         <div className="dropdown dropdown-primary" ref={cartDropdownRef}>
             <button type="button" onClick={() => setCartitem(!cartitem)} className="dropdown-toggle btn btn-sm btn-icon btn-pills btn-primary">
-                <img src={user?.avatar_url} className="img-fluid rounded-pill" alt="" />
+                <img src={getAvatarUrl()} className="img-fluid rounded-pill" alt="" />
             </button>
             <div style={{ display: cartitem === true ? 'block' : 'none' }}>
                 <div className={`dropdown-menu dd-menu dropdown-menu-end bg-white rounded shadow border-0 mt-3 show`}>
-                    <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
-                    <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
+                    {userRole && (
+                        <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
+                    )}{enterpriseRole && (
+                        <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
+                    )}
+                    {userRole && (
+                        <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
+                    )}{enterpriseRole && (
+                        <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
+                    )}
                     <div className="dropdown-divider border-top"></div>
+
                     <Link to="/lock-screen" className="dropdown-item fw-medium fs-6"><FiLock className="fea icon-sm me-2 align-middle" />Lockscreen</Link>
+
                     <span onClick={() => {
                         localStorage.clear();
                         navigate("/");
@@ -166,37 +187,10 @@ export default function NavbarDark() {
                                         className="sub-menu-item"> Job Lists</Link>
 
                                 </li>
-
-                                {/* <li className={manu === "job-detail-three" ? "active" : ""}>
-                                    <Link to="/job-detail-three"
-                                        className="sub-menu-item"
-                                    > Job Detail Three</Link>
-                                </li>
- 
-                                <li className={manu === "job-apply" ? "active" : ""}><Link to="/job-apply" className="sub-menu-item">Job Apply</Link></li>
-
-                                <li className={manu === "job-post" ? "active" : ""}><Link to="/job-post" className="sub-menu-item">Job Post </Link></li>
-
-                                <li className={manu === "career" ? "active" : ""}><Link to="/career" className="sub-menu-item">Career </Link></li> */}
+                                
                             </ul>
                         </li>
-                        {/* 
-                        <li className={`${["employers", "employer-profile"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}>
-                            <Link to="#">Employers</Link><span className="menu-arrow"></span>
-                            <ul className="submenu">
-                                <li className={manu === "employers" ? "active" : ""}><Link to="/employers" className="sub-menu-item">Employers</Link></li>
-                                <li className={manu === "employer-profile" ? "active" : ""}><Link to="/employer-profile" className="sub-menu-item">Employer Profile</Link></li>
-                            </ul>
-                        </li> */}
-
-                        {/* <li className={`${["candidates", "candidate-profile", "candidate-profile-setting"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}>
-                            <Link to="#">Candidates</Link><span className="menu-arrow"></span>
-                            <ul className="submenu">
-                                <li className={manu === "candidates" ? "active" : ""}><Link to="/candidates" className="sub-menu-item">Candidates</Link></li>
-                                <li className={manu === "candidate-profile" ? "active" : ""}><Link to="/candidate-profile" className="sub-menu-item">Candidate Profile</Link></li>
-                                <li className={manu === "candidate-profile-setting" ? "active" : ""}><Link to="/candidate-profile-setting" className="sub-menu-item">Profile Setting</Link></li>
-                            </ul>
-                        </li> */}
+                        
 
                         <li className={`${["aboutus", "services", "pricing", "helpcenter-overview", "helpcenter-faqs", "helpcenter-guides", 'helpcenter-support'].includes(manu) ? "active" : ""} has-submenu parent-menu-item,"blogs", "blog-sidebar","blog-detail","login", "signup","reset-password","lock-screen","terms", "privacy"`}>
                             <Link to="#">Pages</Link><span className="menu-arrow"></span>

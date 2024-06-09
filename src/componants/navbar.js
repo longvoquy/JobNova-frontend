@@ -28,11 +28,12 @@ export default function Navbar({ navClass, navLight }) {
   const cartDropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  const { data: userData } = useUserInfo();
-  const { data: enterpriseData } = useEnterpriseInfo();
+    const { data: userData } = useUserInfo();
+    const { data: enterpriseData } = useEnterpriseInfo();
 
-  const user = userData?.data;
-  const enterprise = enterpriseData?.data;
+    const user = userData?.data;
+    const enterprise = enterpriseData?.data;
+
 
   useEffect(() => {
     const current = location.pathname.substring(
@@ -87,55 +88,28 @@ export default function Navbar({ navClass, navLight }) {
         });
       });
     }
-  };
 
-  const renderUser = () => (
-    <div className="dropdown dropdown-primary" ref={cartDropdownRef}>
-      <button
-        type="button"
-        onClick={() => setCartitem(!cartitem)}
-        className="dropdown-toggle btn btn-sm btn-icon btn-pills btn-primary"
-      >
-        <img src={user?.avatar_url} className="img-fluid rounded-pill" alt="" />
-      </button>
-      <div style={{ display: cartitem === true ? "block" : "none" }}>
-        <div
-          className={`dropdown-menu dd-menu dropdown-menu-end bg-white rounded shadow border-0 mt-3 show`}
-        >
-          <Link
-            to="/candidate-profile"
-            className="dropdown-item fw-medium fs-6"
-          >
-            <FiUser className="fea icon-sm me-2 align-middle" />
-            Profile
-          </Link>
-          <Link
-            to="/candidate-profile-setting"
-            className="dropdown-item fw-medium fs-6"
-          >
-            <FiSettings className="fea icon-sm me-2 align-middle" />
-            Settings
-          </Link>
-          <div className="dropdown-divider border-top"></div>
-          <Link to="/lock-screen" className="dropdown-item fw-medium fs-6">
-            <FiLock className="fea icon-sm me-2 align-middle" />
-            Lockscreen
-          </Link>
-          <span
-            onClick={() => {
-              localStorage.clear();
-              navigate("/");
-              window.location.reload();
-            }}
-            className="dropdown-item fw-medium fs-6"
-          >
-            <FiLogOut className="fea icon-sm me-2 align-middle" />
-            Logout
-          </span>
+
+    const renderUser = () => (
+        <div className="dropdown dropdown-primary" ref={cartDropdownRef}>
+            <button type="button" onClick={() => setCartitem(!cartitem)} className="dropdown-toggle btn btn-sm btn-icon btn-pills btn-primary">
+                <img src={client} className="img-fluid rounded-pill" alt="" />
+            </button>
+            <div style={{ display: cartitem === true ? 'block' : 'none' }}>
+                <div className={`dropdown-menu dd-menu dropdown-menu-end bg-white rounded shadow border-0 mt-3 show`}>
+                    <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
+                    <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
+                    <div className="dropdown-divider border-top"></div>
+                    <Link to="/lock-screen" className="dropdown-item fw-medium fs-6"><FiLock className="fea icon-sm me-2 align-middle" />Lockscreen</Link>
+                    <span onClick={() => {
+                        localStorage.clear();
+                        navigate("/");
+                        window.location.reload();
+                    }} className="dropdown-item fw-medium fs-6"><FiLogOut className="fea icon-sm me-2 align-middle" />Logout</span>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 
   return (
     <header id="topnav" className={`${scroll ? "nav-sticky" : ""} ${navClass}`}>
@@ -217,19 +191,16 @@ export default function Navbar({ navClass, navLight }) {
             </div>
           </li>
 
-          <li className="list-inline-item ps-1 mb-0">
-            {user || enterprise ? (
-              renderUser()
-            ) : (
-              <Link
-                to="/login"
-                className="btn btn-sm btn-icon btn-pills btn-primary"
-              >
-                <FiLogIn className="icons" />
-              </Link>
-            )}
-          </li>
-        </ul>
+                    <li className="list-inline-item ps-1 mb-0">
+                        {user || enterprise ? (
+                            renderUser()
+                        ) : (
+                            <Link to="/login" className="btn btn-sm btn-icon btn-pills btn-primary">
+                                <FiLogIn className="icons" />
+                            </Link>
+                        )}
+                    </li>
+                </ul>
 
         <div id="navigation">
           <ul className="navigation-menu nav-right nav-light">
@@ -237,48 +208,19 @@ export default function Navbar({ navClass, navLight }) {
               <Link to="/index-two">Home</Link>
             </li>
 
-            <li
-              className={`${
-                [
-                  "job-categories",
-                  "job-grid-two",
-                  "job-list-one",
-                  "job-detail-three",
-                  "job-apply",
-                  "job-post",
-                  "career",
-                ].includes(manu)
-                  ? "active"
-                  : ""
-              } has-submenu parent-menu-item`}
-            >
-              <Link to="#"> Jobs </Link>
-              <span className="menu-arrow"></span>
+                        <li className={`${["job-categories", "job-grid-two", "job-list-one", "job-detail-three", "job-apply", "job-post", "career"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}><Link to="#"> Jobs </Link><span className="menu-arrow"></span>
 
-              <ul className="submenu">
-                {/* Job Categories */}
-                <li className={manu === "job-categories" ? "active" : ""}>
-                  <Link to="/job-categories" className="sub-menu-item">
-                    Job Categories
-                  </Link>
-                </li>
-                {/* Job Grids Two */}
-                <li className={manu === "job-grid-two" ? "active" : ""}>
-                  <Link to="/job-grid-two" className="sub-menu-item">
-                    {" "}
-                    Job Grids
-                  </Link>
-                </li>
-                {/* Job Lists One */}
-                <li className={manu === "job-list-one" ? "active" : ""}>
-                  {" "}
-                  <Link to="/job-list-one" className="sub-menu-item">
-                    {" "}
-                    Job Lists
-                  </Link>
-                </li>
+                            <ul className="submenu">
+                                {/* Job Categories */}
+                                <li className={manu === "job-categories" ? "active" : ""}><Link to="/job-categories" className="sub-menu-item">Job Categories</Link></li>
+                                {/* Job Grids Two */}
+                                <li className={manu === "job-grid-two" ? "active" : ""}><Link to="/job-grid-two" className="sub-menu-item"> Job Grids</Link>
+                                </li>
+                                {/* Job Lists One */}
+                                <li className={manu === "job-list-one" ? "active" : ""}> <Link to="/job-list-one" className="sub-menu-item"> Job Lists</Link>
+                                </li>
 
-                {/* <li className={manu === "job-detail-three" ? "active" : ""}>
+                                {/* <li className={manu === "job-detail-three" ? "active" : ""}>
                                     <Link to="/job-detail-three"
                                         className="sub-menu-item"
                                     > Job Detail Three</Link>
@@ -289,10 +231,10 @@ export default function Navbar({ navClass, navLight }) {
                                 <li className={manu === "job-post" ? "active" : ""}><Link to="/job-post" className="sub-menu-item">Job Post </Link></li>
 
                                 <li className={manu === "career" ? "active" : ""}><Link to="/career" className="sub-menu-item">Career </Link></li> */}
-              </ul>
-            </li>
+                            </ul>
+                        </li>
 
-            {/* <li className={`${["employers", "employer-profile"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}>
+                        {/* <li className={`${["employers", "employer-profile"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}>
                             <Link to="#">Employers</Link><span className="menu-arrow"></span>
                             <ul className="submenu">
                                 <li className={manu === "employers" ? "active" : ""}><Link to="/employers" className="sub-menu-item">Employers</Link></li>
@@ -300,7 +242,7 @@ export default function Navbar({ navClass, navLight }) {
                             </ul>
                         </li> */}
 
-            {/* <li className={`${["candidates", "candidate-profile", "candidate-profile-setting"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}>
+                        {/* <li className={`${["candidates", "candidate-profile", "candidate-profile-setting"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}>
                             <Link to="#">Candidates</Link><span className="menu-arrow"></span>
                             <ul className="submenu">
                                 <li className={manu === "candidates" ? "active" : ""}><Link to="/candidates" className="sub-menu-item">Candidates</Link></li>
