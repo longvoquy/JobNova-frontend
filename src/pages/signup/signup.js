@@ -8,7 +8,6 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import bg1 from '../../assets/images/hero/bg3.jpg'
 import logo from '../../assets/images/logo-dark.png'
 import api from "../../api/http";
-import useProtectRoute from "../../hook/useProtectRoute";
 import '../../assets/css/eyes.css'
 export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +18,6 @@ export default function Signup() {
         setShowPassword(!showPassword);
     };
 
-    useProtectRoute()
     const registerMutation = useMutation({
         mutationFn: (formData) => {
             return api.post("signup", formData);

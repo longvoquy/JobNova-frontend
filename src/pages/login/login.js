@@ -6,12 +6,11 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 import bg1 from '../../assets/images/hero/bg3.jpg'
 import logo from '../../assets/images/logo-dark.png'
-import useProtectRoute from "../../hook/useProtectRoute"
 import api from '../../api/http'
 import '../../assets/css/eyes.css'
 export default function Login() {
     const navigate = useNavigate();
-    useProtectRoute()
+    // useProtectRoute()
     const [showPassword, setShowPassword] = useState(false);
     //hien password
     const togglePasswordVisibility = () => {
@@ -77,7 +76,7 @@ export default function Login() {
                                 <div className="mb-3">
                                     <label className="form-label fw-semibold" htmlFor="loginpass">Password</label>
                                     <div className="input-group">
-                                    <input type={showPassword ? 'text' : 'password'} className="form-control" id="loginpass" name="password" placeholder="Password" />
+                                        <input type={showPassword ? 'text' : 'password'} className="form-control" id="loginpass" name="password" placeholder="Password" />
                                         <span className="input-group-append" onClick={togglePasswordVisibility}>
                                             {showPassword ? <FaEyeSlash /> : <FaEye />}
                                         </span>

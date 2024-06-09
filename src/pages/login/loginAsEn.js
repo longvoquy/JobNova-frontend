@@ -5,12 +5,10 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 import bg1 from '../../assets/images/hero/bg3.jpg'
 import logo from '../../assets/images/logo-dark.png'
-import useProtectRoute from "../../hook/useProtectRoute"
 import api from '../../api/http'
 import '../../assets/css/eyes.css'
 export default function LoginEn() {
     const navigate = useNavigate();
-    useProtectRoute()
     const [showPassword, setShowPassword] = useState(false);
     //hien password
     const togglePasswordVisibility = () => {

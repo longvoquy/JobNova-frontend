@@ -8,11 +8,9 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import bg1 from '../../assets/images/hero/bg3.jpg'
 import logo from '../../assets/images/logo-dark.png'
 import api from "../../api/http";
-import useProtectRoute from "../../hook/useProtectRoute";
 import '../../assets/css/eyes.css'
 export default function SignupEn() {
     const navigate = useNavigate();
-    useProtectRoute()
     const [showPassword, setShowPassword] = useState(false);
 
     const registerMutation = useMutation({
