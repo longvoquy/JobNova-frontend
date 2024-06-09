@@ -53,18 +53,18 @@ function App() {
     <>
       <Routes>
         <Route path='/' exact element={<Index />} />
-        <Route path='/index-two'  element={IndexTwo}  />
-        <Route path='/job-categories'  element={JobCategories} />
-        <Route path='/job-grid-two'  element={JobGridTwo} />
-        <Route path='/job-list-one'  element={JobListOne}  />
+        <Route path='/index-two' element={<IndexTwo />}  />
+        <Route path='/job-categories' element={<JobCategories/>}  />
+        <Route path='/job-grid-two'  element={<JobGridTwo/>}  />
+        <Route path='/job-list-one'  element={<JobListOne/>} />
         <Route path='/job-apply' element={<ProtectedRoute element={JobApply} />} />
         <Route path='/job-post' element={<ProtectedRoute element={JobPost} />} />
         <Route path='/career' element={<ProtectedRoute element={Career} />} />
-        <Route path='/job-detail-three' element={JobDetailThree} />
-        <Route path='/job-detail-three/:id' element={<ProtectedRoute element={JobDetailThree} />} />
+        <Route path='/job-detail-three' element={<JobDetailThree/>} />
+        <Route path='/job-detail-three/:id'  element={<JobDetailThree/>} />
 
         <Route path='/employers' element={<ProtectedRoute element={Employers} />} />
-        <Route path='/employer-profile' element={<ProtectedRoute element={EmployerProfile} />} />
+        <Route path='/employer-profile'  element={<EmployerProfile/>} />
         <Route path='/employer-profile/:id' element={<ProtectedRoute element={EmployerProfile} />} />
 
         <Route path='/candidates' element={<ProtectedRoute element={Candidates} />} />
@@ -72,19 +72,17 @@ function App() {
         <Route path='/candidate-profile/:id' element={<ProtectedRoute element={CandidateProfile} />} />
         <Route path='/candidate-profile-setting' element={<ProtectedRoute element={CandidateProfileSetting} />} />
 
-        <Route path='/aboutus'  element={AboutUs} />
-        <Route path='/services'  element={Services}  />
-        <Route path='/pricing'  element={Pricing}  />
-        <Route path='/helpcenter-overview'  element={HelpcenterOverview}  />
-        <Route path='/helpcenter-faqs'  element={HelpcenterFaq}  />
-        <Route path='/helpcenter-guides'  element={HelpcenterGuides} />
-        <Route path='/helpcenter-support'  element={HelpcenterSupport}  />
-
-        <Route path='/blogs'  element={Blogs}  />
-        <Route path='/blog-sidebar' element={BlogSidebar} />
-        <Route path='/blog-detail' element={BlogDetail}  />
-        <Route path='/blog-detail/:id'  element={BlogDetail}  />
-
+        <Route path='/aboutus' e element={<AboutUs/>} />
+        <Route path='/services'  element={<Services/>}  />
+        <Route path='/pricing' element={<Pricing/>}  />
+        <Route path='/helpcenter-overview'  element={<HelpcenterOverview/>}  />
+        <Route path='/helpcenter-faqs' element={<HelpcenterFaq/>} />
+        <Route path='/helpcenter-guides' element={<HelpcenterGuides/>} />
+        <Route path='/helpcenter-support'  element={<HelpcenterSupport/>}  />
+        <Route path='/blogs' element={<Blogs/>} />
+        <Route path='/blog-sidebar' element={<BlogSidebar/>}  />
+        <Route path='/blog-detail'  element={<BlogDetail/>}  />
+        <Route path='/blog-detail/:id'  element={<BlogDetail/>}  />
         <Route path='/login' element={<Login />} />
         <Route path='/En-login' element={<LoginEn />} />
         <Route path='/signup' element={<Signup />} />
@@ -93,14 +91,13 @@ function App() {
         <Route path='/En-reset-password' element={<ResetPasswordEn />} />
         <Route path='/lock-screen' element={<LockScreen />} />
 
-        <Route path='/terms' element={<ProtectedRoute element={Terms} />} />
-        <Route path='/privacy' element={<ProtectedRoute element={Privacy} />} />
-        <Route path='/contactus' element={<ProtectedRoute element={ContactUs} />} />
-        <Route path='*' element={<ProtectedRoute element={Error} />} />
-        <Route path='/error' element={<ProtectedRoute element={Error} />} />
-        <Route path='/comingsoon' element={<ProtectedRoute element={Comingsoom} />} />
-        <Route path='/maintenance' element={<ProtectedRoute element={Maintenance} />} />
-
+        <Route path='/terms'  element={<Terms/>}  />
+        <Route path='/privacy' e element={<Privacy/>}  />
+        <Route path='/contactus' el element={<ContactUs/>}  />
+        <Route path='*'  element={<Error/>}  />
+        <Route path='/error'  element={<Error/>}  />
+        <Route path='/comingsoon'  element={<Comingsoom/>}  />
+        <Route path='/maintenance'  element={<Maintenance/>}  />
         <Route path='/update-password' element={<ProtectedRoute element={UpdatePassword} />} />
         <Route path='/En-update-password' element={<ProtectedRoute element={UpdatePasswordEn} />} />
         <Route path='/change-password' element={<ProtectedRoute element={CreatePassword} />} />
