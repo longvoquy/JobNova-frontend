@@ -75,7 +75,7 @@ export default function NavbarDark() {
     const renderUser = () => (
         <div className="dropdown dropdown-primary" ref={cartDropdownRef}>
             <button type="button" onClick={() => setCartitem(!cartitem)} className="dropdown-toggle btn btn-sm btn-icon btn-pills btn-primary">
-                <img src={client} className="img-fluid rounded-pill" alt="" />
+                <img src={user?.avatar_url} className="img-fluid rounded-pill" alt="" />
             </button>
             <div style={{ display: cartitem === true ? 'block' : 'none' }}>
                 <div className={`dropdown-menu dd-menu dropdown-menu-end bg-white rounded shadow border-0 mt-3 show`}>

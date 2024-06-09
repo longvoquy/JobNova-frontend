@@ -6,7 +6,7 @@ const useUserInfo = () => {
   return useQuery({
     queryKey: ["USER_PROFILE"],
     queryFn: () =>
-      api.get("/profile", {
+      api.get("/candidate-profile", {
         headers: {
           Authorization: token,
         },

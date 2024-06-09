@@ -13,9 +13,9 @@ class Api {
     this.instance.interceptors.response.use(
       (response) => {
         if (
-          response.config.url === "login" ||
+          response.config.url == "login" ||
           response.config.url === "social" ||
-          response.config.url === "enterprise/login" ||
+          response.config.url == "enterprise/login" ||
           response.config.url === "enterprise/social"
         ) {
           localStorage.setItem("token", response.data.token);
