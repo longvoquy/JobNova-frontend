@@ -6,6 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 // import './assets/scss/style.scss'
 // import './assets/css/materialdesignicons.min.css'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,6 +18,7 @@ root.render(
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
+      <ToastContainer position="top-right" theme="dark" />
     </BrowserRouter>
   </React.StrictMode>
 );

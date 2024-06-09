@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
+import 'react-toastify/dist/ReactToastify.css';
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
-import bg1 from '../assets/images/hero/bg3.jpg'
-import logo from '../assets/images/logo-dark.png'
-import useProtectRoute from "../hook/useProtectRoute"
-import api from '../api/http'
-
+import bg1 from '../../assets/images/hero/bg3.jpg'
+import logo from '../../assets/images/logo-dark.png'
+import api from '../../api/http'
+import '../../assets/css/eyes.css'
 export default function Login() {
     const navigate = useNavigate();
-    useProtectRoute()
-
+    // useProtectRoute()
+    const [showPassword, setShowPassword] = useState(false);
+    //hien password
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const loginMutation = useMutation({
         mutationFn: (formData) => {
@@ -70,7 +75,12 @@ export default function Login() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-semibold" htmlFor="loginpass">Password</label>
-                                    <input type="password" className="form-control" id="loginpass" name="password" placeholder="Password" />
+                                    <div className="input-group">
+                                        <input type={showPassword ? 'text' : 'password'} className="form-control" id="loginpass" name="password" placeholder="Password" />
+                                        <span className="input-group-append" onClick={togglePasswordVisibility}>
+                                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div className="d-flex justify-content-between">
@@ -83,7 +93,7 @@ export default function Login() {
                                     <span className="forgot-pass text-muted small mb-0"><Link to="/reset-password" className="text-muted">Forgot password ?</Link></span>
                                 </div>
 
-                                <button className="btn btn-primary w-100" type="submit">Sign in</button>
+                                <button className="btn btn-primary w-100" type="submit">Sign in as Job candidate</button>
 
                                 <div className="col-12 text-center mt-3">
                                     <span><span className="text-muted me-2 small">Don't have an account ?</span> <Link to="/signup" className="text-dark fw-semibold small">Sign Up</Link></span>
