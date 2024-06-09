@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logoDark from "../assets/images/logo-dark.png"
 import logoLight from "../assets/images/logo-light.png"
-import client from "../assets/images/team/01.jpg"
 import { LuSearch, FiUser, FiSettings, FiLock, FiLogOut, FiLogIn } from "../assets/icons/vander";
 
 import useUserInfo from '../hook/useUserInfo'

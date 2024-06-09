@@ -72,7 +72,7 @@ function App() {
         <Route path='/candidate-profile/:id' element={<ProtectedRoute element={CandidateProfile} />} />
         <Route path='/candidate-profile-setting' element={<ProtectedRoute element={CandidateProfileSetting} />} />
 
-        <Route path='/aboutus' e element={<AboutUs/>} />
+        <Route path='/aboutus'  element={<AboutUs/>} />
         <Route path='/services'  element={<Services/>}  />
         <Route path='/pricing' element={<Pricing/>}  />
         <Route path='/helpcenter-overview'  element={<HelpcenterOverview/>}  />
@@ -92,8 +92,8 @@ function App() {
         <Route path='/lock-screen' element={<LockScreen />} />
 
         <Route path='/terms'  element={<Terms/>}  />
-        <Route path='/privacy' e element={<Privacy/>}  />
-        <Route path='/contactus' el element={<ContactUs/>}  />
+        <Route path='/privacy' element={<Privacy/>}  />
+        <Route path='/contactus' element={<ContactUs/>}  />
         <Route path='*'  element={<Error/>}  />
         <Route path='/error'  element={<Error/>}  />
         <Route path='/comingsoon'  element={<Comingsoom/>}  />
