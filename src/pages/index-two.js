@@ -61,7 +61,7 @@ export default function IndexTwo(){
                     </div>
                 </div>
 
-                <ServicesTwo/>
+                {/* <ServicesTwo/> */}
             </div>
             <AboutUs containerClass="container mt-100 mt-60"/>
 

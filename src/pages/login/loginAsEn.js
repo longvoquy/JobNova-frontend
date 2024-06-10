@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import bg1 from '../../assets/images/hero/bg3.jpg'
 import logo from '../../assets/images/logo-dark.png'
@@ -40,6 +42,7 @@ export default function LoginEn() {
     const onfinish = (body) => {
         loginMutation.mutate(body, {
             onError: (error) => {
+                const errorMessage = error.response ? error.response.data.message : error.message;
                 if (error.response && error.response.data.message === "not_verify_yet") {
                     reverifyMutation.mutate(
                         { email: body.email },
@@ -50,7 +53,9 @@ export default function LoginEn() {
                         }
                     );
                 } else {
-                    console.error({ message: error.response ? error.response.data.message : error.message });
+                    
+                    toast.error(errorMessage); // Hiển thị thông báo lỗi
+                    console.error({ message: errorMessage });
                 }
             },
         });
@@ -88,7 +93,7 @@ export default function LoginEn() {
                                             <label className="form-label form-check-label text-muted" htmlFor="flexCheckDefault">Remember me</label>
                                         </div>
                                     </div>
-                                    <span className="forgot-pass text-muted small mb-0"><Link to="/reset-password" className="text-muted">Forgot password ?</Link></span>
+                                    <span className="forgot-pass text-muted small mb-0"><Link to="/En-reset-password" className="text-muted">Forgot password ?</Link></span>
                                 </div>
 
                                 <button className="btn btn-primary w-100" type="submit">Sign in as Enterprise</button>

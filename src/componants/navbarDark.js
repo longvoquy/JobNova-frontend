@@ -20,6 +20,7 @@ export default function NavbarDark() {
 
     const { data: userData } = useUserInfo();
     const { data: enterpriseData } = useEnterpriseInfo();
+    
     const userRole = localStorage.getItem("roleUser");
     const enterpriseRole = localStorage.getItem("roleEnterprise");
     const user = userData?.data;
@@ -72,11 +73,12 @@ export default function NavbarDark() {
             });
         }
     }
+
     const getAvatarUrl = () => {
         if (user?.avatar_url) {
             return user.avatar_url;
         }
-        if (enterprise?.avatar_url) {
+         else if (enterprise?.avatar_url) {
             return enterprise.avatar_url;
         }
 
@@ -92,16 +94,16 @@ export default function NavbarDark() {
                     {userRole && (
                         <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
                     )}{enterpriseRole && (
-                        <Link to="/candidate-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
+                        <Link to="/employer-profile" className="dropdown-item fw-medium fs-6"><FiUser className="fea icon-sm me-2 align-middle" />Profile</Link>
                     )}
                     {userRole && (
                         <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
                     )}{enterpriseRole && (
-                        <Link to="/candidate-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
+                        <Link to="/employer-profile-setting" className="dropdown-item fw-medium fs-6"><FiSettings className="fea icon-sm me-2 align-middle" />Settings</Link>
                     )}
                     <div className="dropdown-divider border-top"></div>
 
-                    <Link to="/lock-screen" className="dropdown-item fw-medium fs-6"><FiLock className="fea icon-sm me-2 align-middle" />Lockscreen</Link>
+                    {/* <Link to="/lock-screen" className="dropdown-item fw-medium fs-6"><FiLock className="fea icon-sm me-2 align-middle" />Lockscreen</Link> */}
 
                     <span onClick={() => {
                         localStorage.clear();
@@ -192,7 +194,7 @@ export default function NavbarDark() {
                         
 
                         <li className={`${["aboutus", "services", "pricing", "helpcenter-overview", "helpcenter-faqs", "helpcenter-guides", 'helpcenter-support'].includes(manu) ? "active" : ""} has-submenu parent-menu-item,"blogs", "blog-sidebar","blog-detail","login", "signup","reset-password","lock-screen","terms", "privacy"`}>
-                            <Link to="#">Pages</Link><span className="menu-arrow"></span>
+                            <Link to="#">Support</Link><span className="menu-arrow"></span>
                             <ul className="submenu">
                                 <li className={manu === "aboutus" ? "active" : ""}><Link to="/aboutus" className="sub-menu-item">About Us</Link></li>
                                 <li className={manu === "services" ? "active" : ""}><Link to="/services" className="sub-menu-item">Services</Link></li>
@@ -216,32 +218,38 @@ export default function NavbarDark() {
                                     </ul>
                                 </li>
 
-                                <li className={`${["login", "signup", "reset-password", "lock-screen"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}><Link to="#"> Auth Pages </Link><span className="submenu-arrow"></span>
+                                {/* <li className={`${["login", "signup", "reset-password", "lock-screen"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}><Link to="#"> Auth Pages </Link><span className="submenu-arrow"></span>
                                     <ul className="submenu">
                                         <li className={manu === "login" ? "active" : ""}><Link to="/login" className="sub-menu-item"> Login</Link></li>
                                         <li className={manu === "signup" ? "active" : ""}><Link to="/signup" className="sub-menu-item"> Signup</Link></li>
                                         <li className={manu === "reset-password" ? "active" : ""}><Link to="/reset-password" className="sub-menu-item"> Forgot Password</Link></li>
                                         <li className={manu === "lock-screen" ? "active" : ""}><Link to="/lock-screen" className="sub-menu-item"> Lock Screen</Link></li>
                                     </ul>
-                                </li>
+                                </li> */}
 
-                                <li className={`${["terms", "privacy"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}><Link to="#"> Utility </Link><span className="submenu-arrow"></span>
+                                {/* <li className={`${["terms", "privacy"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}><Link to="#"> Utility </Link><span className="submenu-arrow"></span>
                                     <ul className="submenu">
                                         <li className={manu === "terms" ? "active" : ""}><Link to="/terms" className="sub-menu-item">Terms of Services</Link></li>
                                         <li className={manu === "privacy" ? "active" : ""}><Link to="/privacy" className="sub-menu-item">Privacy Policy</Link></li>
                                     </ul>
-                                </li>
+                                </li> */}
 
-                                <li className={`${["comingsoon", "maintenance", "error"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}><Link to="#"> Special </Link><span className="submenu-arrow"></span>
+                                {/* <li className={`${["comingsoon", "maintenance", "error"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}><Link to="#"> Special </Link><span className="submenu-arrow"></span>
                                     <ul className="submenu">
                                         <li className={manu === "comingsoon" ? "active" : ""}><Link to="/comingsoon" className="sub-menu-item"> Coming Soon</Link></li>
                                         <li className={manu === "maintenance" ? "active" : ""}><Link to="/maintenance" className="sub-menu-item"> Maintenance</Link></li>
                                         <li className={manu === "error" ? "active" : ""}><Link to="/error" className="sub-menu-item"> 404! Error</Link></li>
                                     </ul>
-                                </li>
+                                </li> */}
                             </ul>
                         </li>
-
+                        <li className={`${["blogs", "blog-sidebar", "blog-detail"].includes(manu) ? "active" : ""} has-submenu parent-menu-item`}><Link to="#"> Blog </Link><span className="submenu-arrow"></span>
+                            <ul className="submenu">
+                                <li className={manu === "blogs" ? "active" : ""}><Link to="/blogs" className="sub-menu-item"> Blogs</Link></li>
+                                <li className={manu === "blog-sidebar" ? "active" : ""}><Link to="/blog-sidebar" className="sub-menu-item"> Blog Sidebar</Link></li>
+                                <li className={manu === "blog-detail" ? "active" : ""}><Link to="/blog-detail" className="sub-menu-item"> Blog Detail</Link></li>
+                            </ul>
+                        </li>
                         <li className={manu === "contactus" ? "active" : ""}><Link to="/contactus" className="sub-menu-item">Contact Us</Link></li>
                     </ul>
                 </div>

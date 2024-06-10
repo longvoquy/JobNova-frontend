@@ -57,7 +57,7 @@ export default function JobGridTwo(){
                         <div className="col-lg-4 col-md-6 col-12" key={index}>
                             <div className="job-post rounded shadow bg-white">
                                 <div className="p-4">
-                                    <Link to={`/job-detail-two/${item.id}`} className="text-dark title h5">{item.title}</Link>
+                                    <Link to={`/job-detail-three/${item.id}`} className="text-dark title h5">{item.title}</Link>
 
                                     <p className="text-muted d-flex align-items-center small mt-3"><FiClock className="fea icon-sm text-primary me-1"/>Posted {item.posted} Days ago</p>
 

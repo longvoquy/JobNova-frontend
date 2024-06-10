@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import bg1 from '../../assets/images/hero/bg3.jpg'
 import logo from '../../assets/images/logo-dark.png'
@@ -42,6 +44,7 @@ export default function Login() {
     const onfinish = (body) => {
         loginMutation.mutate(body, {
             onError: (error) => {
+                const errorMessage = error.response ? error.response.data.message : error.message;
                 if (error.response && error.response.data.message === "not_verify_yet") {
                     reverifyMutation.mutate(
                         { email: body.email },
@@ -52,7 +55,9 @@ export default function Login() {
                         }
                     );
                 } else {
-                    console.error({ message: error.response ? error.response.data.message : error.message });
+                    // console.error({ message: error.response ? error.response.data.message : error.message });
+                    toast.error(errorMessage); // Hiển thị thông báo lỗi
+                    console.error({ message: errorMessage });
                 }
             },
         });

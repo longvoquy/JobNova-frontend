@@ -28,10 +28,10 @@ export default function ResetPasswordEn(){
         forgotPasswordMutation.mutate(body, {
             onSuccess(data) {
                 navigate('/En-login');
-                toast.success({ message: "Email is sent successfully" })
+                toast.success("Email is sent successfully. Please check your mail")
             },
             onError() {
-                toast.error({ message: "Email is sent failed" })
+                toast.error("Email is sent failed")
             }
         })
     }

@@ -8,12 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import bg1 from '../../assets/images/hero/bg3.jpg'
 import logo from '../../assets/images/logo-dark.png'
 import api from '../../api/http'
-import useProtectRoute from '../../hook/useProtectRoute'
 
 export default function CreatePasswordEn(){
 
     const navigate = useNavigate();
-    useProtectRoute();
     const [searchParams] = useSearchParams();
     const token = searchParams.get("token");
 

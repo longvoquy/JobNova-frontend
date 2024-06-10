@@ -11,7 +11,7 @@ import { jobData } from "../data/data";
 
 export default function JobDetailThree(){
     let params = useParams();
-    let id = params.id
+    let id = params.id;
     let data = jobData.find((job)=>job.id === parseInt(id));
     return(
         <>
@@ -64,7 +64,7 @@ export default function JobDetailThree(){
                                         <FiClock className="fea icon-ex-md me-3"/>
                                         <div className="flex-1">
                                             <h6 className="widget-title mb-0">Date posted:</h6>
-                                            <small className="text-primary mb-0 mb-0">{data?.date ? data.date : '19th June, 2023'}</small>
+                                            <small className="text-primary mb-0">{data?.date ? data.date : '19th June, 2023'}</small>
                                         </div>
                                     </div>
                                 </li>
@@ -143,7 +143,7 @@ export default function JobDetailThree(){
                             </ul>
 
                             <div className="mt-4">
-                                <Link to="/job-apply" className="btn btn-outline-primary">Apply Now <i className="mdi mdi-send"></i></Link>
+                                    <Link to="/job-apply" className="btn btn-outline-primary" state={{ job: data }}>Apply Now <i className="mdi mdi-send"></i></Link>
                             </div>
                         </div>
                     </div>

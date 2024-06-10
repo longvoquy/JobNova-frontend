@@ -7,19 +7,19 @@ import NavbarDark from "../componants/navbarDark";
 import Footer from "../componants/footer";
 import ScrollTop from "../componants/scrollTop";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import TextArea from "antd/es/input/TextArea";
 import { Input, Modal, notification } from "antd";
 import Loading from "../componants/loading";
 import { FiCamera } from "../assets/icons/vander";
 import NotificationSettings from "../componants/notification-setting/notificationSettings";
+
 export default function CandidateProfileSetting() {
   //   let [file, setFile] = useState(image1);
-
+  
   const queryClient = useQueryClient();
   const token = localStorage.getItem("token");
   const { data: userData } = useUserInfo();
   const user = userData?.data;
-
+  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");

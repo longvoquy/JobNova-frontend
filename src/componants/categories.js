@@ -6,7 +6,7 @@ import { categoriesData } from "../data/data";
 import TinySlider from "tiny-slider-react";
 import 'tiny-slider/dist/tiny-slider.css';
 
-export default function Categories(){
+export default function Categories() {
     let settings = {
         container: '.tiny-five-item',
         controls: true,
@@ -38,8 +38,8 @@ export default function Categories(){
                 items: 1
             },
         },
-      };
-    return(
+    };
+    return (
         <>
             <div className="container mt-100 mt-60">
                 <div className="row justify-content-center mb-4 pb-2">
@@ -55,21 +55,21 @@ export default function Categories(){
                     <div className="col-12 mt-4">
                         <div className="tiny-five-item">
                             <TinySlider settings={settings}>
-                                {categoriesData.map((item,index)=>{
+                                {categoriesData.map((item, index) => {
                                     let Icon = item.icon
-                                    return(
-                                    <div className="tiny-slide" key={index}>
-                                        <div className="position-relative job-category text-center px-4 py-5 rounded shadow m-2">
-                                            <div className="feature-icon bg-soft-primary rounded shadow mx-auto position-relative overflow-hidden d-flex justify-content-center align-items-center">
-                                                <Icon className="fea icon-ex-md"/>
-                                            </div>
-                    
-                                            <div className="mt-4">
-                                                <Link to="" className="title h5 text-dark">{item.title} <br/> {item.title2}</Link>
-                                                <p className="text-muted mb-0 mt-3">{item.jobs}</p>
+                                    return (
+                                        <div className="tiny-slide" key={index}>
+                                            <div className="position-relative job-category text-center px-4 py-5 rounded shadow m-2">
+                                                <div className="feature-icon bg-soft-primary rounded shadow mx-auto position-relative overflow-hidden d-flex justify-content-center align-items-center">
+                                                    <Icon className="fea icon-ex-md" />
+                                                </div>
+
+                                                <div className="mt-4">
+                                                    <Link to="" className="title h5 text-dark">{item.title} <br /> {item.title2}</Link>
+                                                    <p className="text-muted mb-0 mt-3">{item.jobs}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     )
                                 })}
                             </TinySlider>

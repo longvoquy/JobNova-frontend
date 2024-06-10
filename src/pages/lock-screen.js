@@ -5,6 +5,7 @@ import bg1 from '../assets/images/hero/bg3.jpg'
 import user from '../assets/images/team/01.jpg'
 
 export default function LockScreen(){
+    
     return(
         <section className="bg-home d-flex align-items-center" style={{backgroundImage:`url(${bg1})`, backgroundPosition:'center'}}>
             <div className="bg-overlay bg-linear-gradient-2"></div>

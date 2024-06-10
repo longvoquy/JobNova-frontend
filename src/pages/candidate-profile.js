@@ -1,11 +1,9 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import bg1 from "../assets/images/hero/bg5.jpg";
 import company1 from "../assets/images/company/linkedin.png";
 import company2 from "../assets/images/company/lenovo-logo.png";
-import pdf from "../assets/images/calvin-carlo-resume.pdf";
-
 import NavbarDark from "../componants/navbarDark";
 import Footer from "../componants/footer";
 import ScrollTop from "../componants/scrollTop";
@@ -13,8 +11,6 @@ import { candidateSkill, candidatesData } from "../data/data";
 import {
   FiSettings,
   FiMail,
-  FiGift,
-  FiHome,
   FiMapPin,
   FiGlobe,
   FiPhone,
@@ -27,18 +23,20 @@ import {
   FiMessageCircle,
   FiFileText,
 } from "../assets/icons/vander";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import useUserInfo from "../hook/useUserInfo";
-import { useState } from "react";
-import { notification } from "antd";
+
+import 'react-toastify/dist/ReactToastify.css';
+
 import api from "../api/http";
 import Loading from "../componants/loading";
 import { ContactUs } from "../componants/contact";
 export default function CandidateProfile() {
-  const queryClient = useQueryClient();
+
   const token = localStorage.getItem("token");
   const { data: userData } = useUserInfo();
   const user = userData?.data;
+
   const uploadAvatar = useMutation({
     mutationFn: (formData) => {
       return api.patch("/update-avatar", formData, {
@@ -50,40 +48,7 @@ export default function CandidateProfile() {
     },
   });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [file, setFile] = useState();
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
 
-  const handleOk = () => {
-    if (!file) {
-      return;
-    }
-    let formData = new FormData();
-    formData.append("image", file);
-    uploadAvatar.mutate(formData, {
-      onSuccess() {
-        queryClient.invalidateQueries("USER_PROFILE");
-        notification.success({ message: "Update avatar successfully" });
-      },
-      onError() {
-        notification.error({ message: "Update avatar failed" });
-      },
-    });
-
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  let params = useParams();
-  let id = params.id;
-  let data = candidatesData.find(
-    (candidates) => candidates.id === parseInt(id)
-  );
   return (
     <>
       <NavbarDark />
@@ -108,7 +73,7 @@ export default function CandidateProfile() {
 
                       <div className="ms-2">
                         <h5 className="mb-0">
-                          {user?.gender == 0 ? "Mr. " : "Mrs. "}{" "}
+                          {user?.gender === 0 ? "Mr. " : "Mrs. "}{" "}
                           {user?.firstName == null && user?.last_name == null
                             ? user?.user_name
                             : user?.first_name + " " + user?.last_name}
@@ -310,7 +275,7 @@ export default function CandidateProfile() {
                     </div>
                   </div>
                 </form> */}
-                <ContactUs/>
+                <ContactUs />
               </div>
             </div>
 

@@ -121,7 +121,7 @@ export default function JobDetailOne(){
                                     <FiClock className="fea icon-ex-md me-3"/>
                                     <div className="flex-1">
                                         <h6 className="widget-title mb-0">Date posted:</h6>
-                                        <small className="text-primary mb-0 mb-0">{data?.date ? data.date : '19th June, 2023'}</small>
+                                        <small className="text-primary mb-0">{data?.date ? data.date : '19th June, 2023'}</small>
                                     </div>
                                 </div>
                             </div>
