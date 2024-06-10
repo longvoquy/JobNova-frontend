@@ -78,10 +78,10 @@ export default function Navbar({ navClass, navLight }) {
     }
     // Function to get avatar_url from user or enterprise
     const getAvatarUrl = () => {
-        if (user?.avatar_url) {
+        if (userRole&&user?.avatar_url) {
             return user.avatar_url;
         }
-        else if (enterprise?.avatar_url) {
+        else if (enterpriseRole&&enterprise?.avatar_url) {
             return enterprise.avatar_url;
         }
 
@@ -181,7 +181,7 @@ export default function Navbar({ navClass, navLight }) {
                                 </button>
                                 <div style={{ display: cartitem === true ? 'block' : 'none' }}>
                                     <div className={`dropdown-menu dd-menu dropdown-menu-end bg-white rounded shadow border-0 mt-3 show`}>
-                                        <Link to="/login" className="dropdown-item fw-medium fs-6">Login as Job Candidate</Link>
+                                        <Link to="/login" className="dropdown-item fw-medium fs-6">Login as Job Seeker</Link>
                                         <div className="dropdown-divider border-top"></div>
                                         <Link to="/En-login" className="dropdown-item fw-medium fs-6">Login as Enterprise</Link>
                                     </div>

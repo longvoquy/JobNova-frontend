@@ -75,10 +75,10 @@ export default function NavbarDark() {
     }
 
     const getAvatarUrl = () => {
-        if (user?.avatar_url) {
+        if (userRole&&user?.avatar_url) {
             return user.avatar_url;
         }
-         else if (enterprise?.avatar_url) {
+        else if (enterpriseRole&&enterprise?.avatar_url) {
             return enterprise.avatar_url;
         }
 
