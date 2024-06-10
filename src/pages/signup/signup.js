@@ -85,7 +85,7 @@ export default function Signup() {
                                     <label className="form-label form-check-label text-muted" htmlFor="flexCheckDefault">I Accept <Link to="#" className="text-primary">Terms And Condition</Link></label>
                                 </div>
 
-                                <button className="btn btn-primary w-100" type="submit">Register as Job candidate</button>
+                                <button className="btn btn-primary w-100" type="submit">Register as Job Seeker</button>
 
                                 <div className="col-12 text-center mt-3">
                                     <span><span className="text-muted small me-2">Already have an account ? </span> <Link to="/login" className="text-dark fw-semibold small">Sign in</Link></span>

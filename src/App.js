@@ -48,16 +48,18 @@ import UpdatePasswordEn from "./pages/update-password/update-passwordAsEn";
 import CreatePassword from "./pages/change-password/create-password"
 import CreatePasswordEn from "./pages/change-password/create-passwordAsEn";
 import ProtectedRoute from './hook/useProtectRoute';
+import CreateCV from './pages/create-cv/create-cv';
+
 function App() {
   return (
     <>
       <Routes>
-        <Route path='/'  element={<Index />} />
+        <Route path='/' element={<Index />} />
         <Route path='/index-two' element={<IndexTwo />} />
         <Route path='/job-categories' element={<JobCategories />} />
         <Route path='/job-grid-two' element={<JobGridTwo />} />
         <Route path='/job-list-one' element={<JobListOne />} />
-        
+
         <Route path='/job-apply' element={<ProtectedRoute element={JobApply} />} />
         <Route path='/job-post' element={<ProtectedRoute element={JobPost} />} />
         <Route path='/career' element={<ProtectedRoute element={Career} />} />
@@ -103,6 +105,7 @@ function App() {
         <Route path='/En-update-password' element={<UpdatePasswordEn />} />
         <Route path='/change-password' element={<CreatePassword />} />
         <Route path='/En-change-password' element={<CreatePasswordEn />} />
+        <Route path='/create-CV' element={<CreateCV />} />
       </Routes>
     </>
   );

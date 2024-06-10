@@ -98,7 +98,7 @@ export default function Login() {
                                     <span className="forgot-pass text-muted small mb-0"><Link to="/reset-password" className="text-muted">Forgot password ?</Link></span>
                                 </div>
 
-                                <button className="btn btn-primary w-100" type="submit">Sign in as Job candidate</button>
+                                <button className="btn btn-primary w-100" type="submit">Sign in as Job Seeker</button>
 
                                 <div className="col-12 text-center mt-3">
                                     <span><span className="text-muted me-2 small">Don't have an account ?</span> <Link to="/signup" className="text-dark fw-semibold small">Sign Up</Link></span>
