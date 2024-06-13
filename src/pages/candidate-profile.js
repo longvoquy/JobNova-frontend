@@ -99,7 +99,7 @@ export default function CandidateProfile() {
             <div className="col-lg-8 col-md-7 col-12">
               <h5 className="mb-4">Introduction:</h5>
 
-              <p className="text-muted">{user?.intro}</p>
+              <div dangerouslySetInnerHTML={{ __html: user?.intro }} />
 
               <h5 className="mt-4">Skills:</h5>
 

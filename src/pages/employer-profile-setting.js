@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import api from "../api/http";
 import bg1 from "../assets/images/hero/bg5.jpg";
-import useUserInfo from "../hook/useUserInfo";
+import useEnterpriseInfo from "../hook/useEnterpriseInfo";
 import NavbarDark from "../componants/navbarDark";
 import Footer from "../componants/footer";
 import ScrollTop from "../componants/scrollTop";
@@ -11,16 +11,15 @@ import { Input, Modal, notification } from "antd";
 import Loading from "../componants/loading";
 import { FiCamera } from "../assets/icons/vander";
 import NotificationSettings from "../componants/notification-setting/notificationSettings";
-import RichTextEditor from "../componants/richtexteditor/RichTextEditor";
 
-export default function CandidateProfileSetting() {
+export default function EmployerProfileSetting() {
   //   let [file, setFile] = useState(image1);
-
+  
   const queryClient = useQueryClient();
   const token = localStorage.getItem("token");
-  const { data: userData } = useUserInfo();
-  const user = userData?.data;
-
+  const { data: enterpriseData } = useEnterpriseInfo();
+  const enterprise = enterpriseData?.data;
+  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,9 +30,9 @@ export default function CandidateProfileSetting() {
   const [intro, setIntro] = useState("");
   const [errors, setErrors] = useState({}); // Define errors state
 
-  const updateUserInfoMutation = useMutation({
+  const updateEnterpriseInfoMutation = useMutation({
     mutationFn: (body) => {
-      return api.patch("/update-info", body, {
+      return api.patch("/enterprise/update-info", body, {
         headers: {
           Authorization: token,
         },
@@ -42,27 +41,24 @@ export default function CandidateProfileSetting() {
   });
 
   useEffect(() => {
-    if (user) {
-      setFirstName(user.first_name);
-      setLastName(user.last_name);
-      setEmail(user.email);
-      setSelectedState(user.state);
-      setIntro(user.intro);
-      setOccupation(user.occupation);
-      setPhone(user.phone);
-      setWebUrl(user.web_url);
+    if (enterprise) {
+      setFirstName(enterprise.first_name);
+      setLastName(enterprise.last_name);
+      setEmail(enterprise.email);
+      setSelectedState(enterprise.state);
+      setIntro(enterprise.intro);
+      setOccupation(enterprise.occupation);
+      setPhone(enterprise.phone);
+      setWebUrl(enterprise.web_url);
     }
-  }, [user]);
+  }, [enterprise]);
 
   const handleInfoSubmit = (e) => {
     e.preventDefault();
-    updateUserInfo(); // Trigger user info update
-    if (resume) {
-      handleUploadResume();
-    }
+    updateEnterpriseInfo(); // Trigger user info update
   };
 
-  function updateUserInfo() {
+  function updateEnterpriseInfo() {
     if (validateForm()) {
       const body = {
         state: selectedState,
@@ -74,7 +70,7 @@ export default function CandidateProfileSetting() {
         resume: resume,
       };
 
-      updateUserInfoMutation.mutate(body, {
+      updateEnterpriseInfoMutation.mutate(body, {
         onSuccess: (data) => {
           notification.success({ message: "User info updated successfully:" });
           // Optionally, you can perform any other actions here after updating the user info
@@ -127,10 +123,11 @@ export default function CandidateProfileSetting() {
 
     return valid;
   }
+
   //Contact Info Update
   const updateContactInfo = useMutation({
     mutationFn: (body) => {
-      return api.patch("/update-contact-info", body, {
+      return api.patch("/enterprise/update-contact-info", body, {
         headers: {
           Authorization: token,
         },
@@ -151,9 +148,11 @@ export default function CandidateProfileSetting() {
           notification.success({
             message: "Contact info updated successfully:",
           });
+          // Optionally, you can perform any other actions here after updating the contact info
         },
         onError: (error) => {
           notification.error({ message: "Error updating contact info:" });
+          // Optionally, handle the error or show a notification to the user
         },
       });
     }
@@ -714,7 +713,15 @@ export default function CandidateProfileSetting() {
                           <label className="form-label fw-semibold">
                             Introduction :
                           </label>
-                          <RichTextEditor value={intro} onChange={setIntro} />
+                          <textarea
+                            name="comments"
+                            id="comments2"
+                            rows="4"
+                            className="form-control"
+                            placeholder="Introduction :"
+                            value={intro}
+                            onChange={(e) => setIntro(e.target.value)}
+                          ></textarea>
                         </div>
                       </div>
 
