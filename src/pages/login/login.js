@@ -30,6 +30,7 @@ export default function Login() {
         },
     });
 
+
     // doc phan event nhap vao
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,9 +49,10 @@ export default function Login() {
                 if (error.response && error.response.data.message === "not_verify_yet") {
                     reverifyMutation.mutate(
                         { email: body.email },
-                        {
+                        {   
                             onSuccess: () => {
-                                navigate(`/verify?email=${body.email}`);
+                                toast.success('Please check your email to verify your account!'); // Hiển thị thông báo
+                                navigate('/login');
                             },
                         }
                     );

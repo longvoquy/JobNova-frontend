@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from 'react-toastify';
@@ -11,8 +11,22 @@ import api from "../../api/http";
 import '../../assets/css/eyes.css'
 export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
+    const [userTypes, setUserTypes] = useState([]);
 
     const navigate = useNavigate();
+    // Fetch user types
+    useEffect(() => {
+        const fetchUserTypes = async () => {
+            try {
+                const response = await api.get("/usertypes");
+                // console.log(response.data);
+                setUserTypes(response.data);
+            } catch (error) {
+                toast.error("Failed to fetch user types");
+            }
+        };
+        fetchUserTypes();
+    }, []);
     //hien password
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -20,7 +34,7 @@ export default function Signup() {
 
     const registerMutation = useMutation({
         mutationFn: (formData) => {
-            return api.post("signup", formData);
+            return api.post("/signup", formData);
         },
     });
     // doc phan event nhap vao
@@ -31,18 +45,36 @@ export default function Signup() {
             user_name: formData.get('user_name'),
             email: formData.get('email'),
             password: formData.get('password'),
+            userTypeId: parseInt(formData.get('user_type_id'), 10),
         };
-
-        onfinish(data);
+        console.log(data);
+        onfinish(data); 
     };
 
     const onfinish = (body) => {
+        // registerMutation.mutate(body, {
+        //     onSuccess(data) {
+        //         navigate('/login');
+        //         console.log(data);
+        //         toast.success("Register successfully. Please check your email to verify your account.");
+        //     },
+        //     onError(error) {
+        //         console.log(error);
+        //         toast.error(error.response?.data?.message || "Registration failed");
+        //     },
+        // });
         registerMutation.mutate(body, {
-            onSuccess(data) {
-                navigate('/login');
-                toast.success("Register successfully. Please check your email to verify your account.");
+            onSuccess(response) {
+                if (response && response.data) {
+                    navigate('/login');
+                    console.log(response.data);
+                    toast.success("Register successfully. Please check your email to verify your account.");
+                } else {
+                    toast.error("Unexpected response from server");
+                }
             },
             onError(error) {
+                console.log(error);
                 toast.error(error.response?.data?.message || "Registration failed");
             },
         });
@@ -72,12 +104,24 @@ export default function Signup() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-semibold" htmlFor="loginpass">Password</label>
-                                    <div className="input-group">
+                                    <div className="input-group position-relative">
                                         <input name='password' type={showPassword ? 'text' : 'password'} className="form-control" id="loginpass" placeholder="Password" />
                                         <span className="input-group-append" onClick={togglePasswordVisibility}>
                                             {showPassword ? <FaEyeSlash /> : <FaEye />}
                                         </span>
                                     </div>
+                                </div>
+
+                                <div className="mb-3">
+                                    <label className="form-label fw-semibold">Select User Type</label>
+                                    <select name="user_type_id" className="form-control">
+                                        <option value="" disabled>Select User Type</option>
+                                        {userTypes.length > 0 ? userTypes.map((type, index) => (
+                                            <option key={`${type.roleTypeId}-${index}`} value={type.roleTypeId}>
+                                                {type.roleTypeName}
+                                            </option>
+                                        )) : <option>Loading...</option>}
+                                    </select>
                                 </div>
 
                                 <div className="form-check mb-3">

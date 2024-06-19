@@ -40,8 +40,6 @@ import Error from "./pages/error";
 import Comingsoom from "./pages/comingsoon";
 import Maintenance from "./pages/maintenance";
 
-import LoginEn from "./pages/login/loginAsEn";
-import SignupEn from "./pages/signup/signupAsEn";
 import ResetPasswordEn from "./pages/reset-password/reset-passwordAsEn";
 import UpdatePassword from "./pages/update-password/update-password";
 import UpdatePasswordEn from "./pages/update-password/update-passwordAsEn";
@@ -87,9 +85,8 @@ function App() {
         <Route path='/blog-detail' element={<BlogDetail />} />
         <Route path='/blog-detail/:id' element={<BlogDetail />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/En-login' element={<LoginEn />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/En-signup' element={<SignupEn />} />
+
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/En-reset-password' element={<ResetPasswordEn />} />
         <Route path='/lock-screen' element={<LockScreen />} />
