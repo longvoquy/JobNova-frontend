@@ -45,7 +45,7 @@ export default function CandidateProfileSetting() {
     if (user) {
       setFirstName(user.first_name);
       setLastName(user.last_name);
-      setEmail(user.email);
+      setEmail(user.user.email);
       setSelectedState(user.state);
       setIntro(user.intro);
       setOccupation(user.occupation);

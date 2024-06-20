@@ -290,7 +290,7 @@ export default function CandidateProfile() {
                     <span className="fw-medium">
                       {user && user.user_name === "Johny Sins"
                         ? "johnysins@gmail.com"
-                        : user?.email}
+                        : user?.user.email}
                     </span>
                   </div>
 
