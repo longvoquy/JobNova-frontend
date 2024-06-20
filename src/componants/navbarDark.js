@@ -75,10 +75,10 @@ export default function NavbarDark() {
     }
 
     const getAvatarUrl = () => {
-        if (user?.avatar_url) {
+        if (userRole&&user?.avatar_url) {
             return user.avatar_url;
         }
-         else if (enterprise?.avatar_url) {
+        else if (enterpriseRole&&enterprise?.avatar_url) {
             return enterprise.avatar_url;
         }
 
@@ -250,6 +250,9 @@ export default function NavbarDark() {
                                 <li className={manu === "blog-detail" ? "active" : ""}><Link to="/blog-detail" className="sub-menu-item"> Blog Detail</Link></li>
                             </ul>
                         </li>
+                        {userRole && (
+                            <li className={manu === "createCV" ? "active" : ""}><Link to="/create-CV" className="sub-menu-item">Create CV</Link></li>
+                        )}
                         <li className={manu === "contactus" ? "active" : ""}><Link to="/contactus" className="sub-menu-item">Contact Us</Link></li>
                     </ul>
                 </div>

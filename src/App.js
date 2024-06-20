@@ -40,24 +40,24 @@ import Error from "./pages/error";
 import Comingsoom from "./pages/comingsoon";
 import Maintenance from "./pages/maintenance";
 
-import LoginEn from "./pages/login/loginAsEn";
-import SignupEn from "./pages/signup/signupAsEn";
 import ResetPasswordEn from "./pages/reset-password/reset-passwordAsEn";
 import UpdatePassword from "./pages/update-password/update-password";
 import UpdatePasswordEn from "./pages/update-password/update-passwordAsEn";
 import CreatePassword from "./pages/change-password/create-password"
 import CreatePasswordEn from "./pages/change-password/create-passwordAsEn";
 import ProtectedRoute from './hook/useProtectRoute';
+import CreateCV from './pages/create-cv/create-cv';
+
 function App() {
   return (
     <>
       <Routes>
-        <Route path='/'  element={<Index />} />
+        <Route path='/' element={<Index />} />
         <Route path='/index-two' element={<IndexTwo />} />
         <Route path='/job-categories' element={<JobCategories />} />
         <Route path='/job-grid-two' element={<JobGridTwo />} />
         <Route path='/job-list-one' element={<JobListOne />} />
-        
+
         <Route path='/job-apply' element={<ProtectedRoute element={JobApply} />} />
         <Route path='/job-post' element={<ProtectedRoute element={JobPost} />} />
         <Route path='/career' element={<ProtectedRoute element={Career} />} />
@@ -85,9 +85,8 @@ function App() {
         <Route path='/blog-detail' element={<BlogDetail />} />
         <Route path='/blog-detail/:id' element={<BlogDetail />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/En-login' element={<LoginEn />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/En-signup' element={<SignupEn />} />
+
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/En-reset-password' element={<ResetPasswordEn />} />
         <Route path='/lock-screen' element={<LockScreen />} />
@@ -103,6 +102,7 @@ function App() {
         <Route path='/En-update-password' element={<UpdatePasswordEn />} />
         <Route path='/change-password' element={<CreatePassword />} />
         <Route path='/En-change-password' element={<CreatePasswordEn />} />
+        <Route path='/create-CV' element={<CreateCV />} />
       </Routes>
     </>
   );
