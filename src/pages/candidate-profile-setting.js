@@ -87,8 +87,9 @@ export default function CandidateProfileSetting() {
     }
   }
 
-  const firstNameRegex = /^[a-zA-ZÀ-ÿ\- ']+$/;
-  const lastNameRegex = /^[a-zA-ZÀ-ÿ\- ']+$/;
+  const firstNameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/u;
+
+  const lastNameRegex =/^[a-zA-Z]/u;
   function validateForm() {
     let valid = true;
     const errorsCopy = { ...errors };
